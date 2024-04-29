@@ -79,18 +79,20 @@ const ImageClusterIdentification = ({ imagePath, k }) => {
   }, [imagePath, k, imageLoaded]);
 
   return (
-    <div>
-      <h3>Resultant Image, k = {k}:</h3>
-      {imageLoaded ? (
-        <canvas
-          ref={canvasRef}
-          width={canvasDimensions.width}
-          height={canvasDimensions.height}
-        />
-      ) : (
-        <p>Processing...</p>
-      )}
-    </div>
+    <>
+      <div>
+        <h3>Resultant Image, k = {k}:</h3>
+        {imageLoaded ? (
+          <canvas
+            ref={canvasRef}
+            width={canvasDimensions.width}
+            height={canvasDimensions.height}
+          />
+        ) : (
+          <p>Processing...</p>
+        )}
+      </div>
+    </>
   );
 };
 

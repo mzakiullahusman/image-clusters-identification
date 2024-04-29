@@ -45,6 +45,10 @@ function App() {
       {uploadedImage && (
         <ImageClusterIdentification imagePath={uploadedImage} k={k} />
       )}
+      <br />
+      <br />
+      <br />
+      <p>Created by: Muhammad Zakiullah Usman</p>
     </div>
   );
 }
