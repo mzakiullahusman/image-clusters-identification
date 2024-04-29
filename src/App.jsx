@@ -8,6 +8,7 @@ function App() {
   const [showComparison, setShowComparison] = useState(false);
 
   const handleImageUpload = (event) => {
+    setUploadedImage(null);
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -68,7 +69,14 @@ function App() {
         href="https://github.com/mzakiullahusman/image-clusters-identification"
         target="_blank"
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.25rem",
+          }}
+        >
           <img
             src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
             alt="GitHub"
