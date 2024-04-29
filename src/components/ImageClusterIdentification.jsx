@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { kmeans } from "ml-kmeans";
+import PropTypes from "prop-types";
 
 const ImageClusterIdentification = ({ imagePath, k }) => {
   const canvasRef = useRef(null);
@@ -94,6 +95,11 @@ const ImageClusterIdentification = ({ imagePath, k }) => {
       </div>
     </>
   );
+};
+
+ImageClusterIdentification.propTypes = {
+  imagePath: PropTypes.string.isRequired, // Validate imagePath as a required string
+  k: PropTypes.number.isRequired, // Validate k as a required number
 };
 
 export default ImageClusterIdentification;
