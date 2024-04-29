@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { kmeans } from "ml-kmeans";
 import PropTypes from "prop-types";
 
-const ImageClusterIdentification = ({ imagePath, k }) => {
+const ImageClusterIdentification = ({ imagePath, k, showComparison }) => {
   const canvasRef = useRef(null);
   const [canvasDimensions, setCanvasDimensions] = useState({
     width: 0,
     height: 0,
   });
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [originalImageLoaded, setOriginalImageLoaded] = useState(false);
 
   useEffect(() => {
     const extractPalette = async () => {
@@ -76,7 +77,20 @@ const ImageClusterIdentification = ({ imagePath, k }) => {
       });
     };
 
+    const extractOriginalImage = async () => {
+      try {
+        const img = new Image();
+        img.onload = () => {
+          setOriginalImageLoaded(true);
+        };
+        img.src = imagePath;
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
     extractPalette();
+    extractOriginalImage();
   }, [imagePath, k, imageLoaded]);
 
   return (
@@ -93,6 +107,12 @@ const ImageClusterIdentification = ({ imagePath, k }) => {
           <p>Processing...</p>
         )}
       </div>
+      {showComparison && originalImageLoaded && (
+        <div>
+          <h3>Original Image:</h3>
+          <img src={imagePath} alt="Original" />
+        </div>
+      )}
     </>
   );
 };
@@ -100,6 +120,7 @@ const ImageClusterIdentification = ({ imagePath, k }) => {
 ImageClusterIdentification.propTypes = {
   imagePath: PropTypes.string.isRequired, // Validate imagePath as a required string
   k: PropTypes.number.isRequired, // Validate k as a required number
+  showComparison: PropTypes.bool.isRequired, // Validate showComparison as a required number
 };
 
 export default ImageClusterIdentification;

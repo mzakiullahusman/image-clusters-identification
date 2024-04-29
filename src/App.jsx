@@ -5,6 +5,7 @@ import ImageClusterIdentification from "./components/ImageClusterIdentification"
 function App() {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [k, setK] = useState(3); // Initial value of k
+  const [showComparison, setShowComparison] = useState(false);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -12,6 +13,7 @@ function App() {
 
     reader.onloadend = () => {
       setUploadedImage(reader.result);
+      setShowComparison(false);
     };
 
     if (file) {
@@ -29,6 +31,10 @@ function App() {
     }
   };
 
+  const toggleComparison = () => {
+    setShowComparison((prevState) => !prevState);
+  };
+
   return (
     <div>
       <h2>
@@ -43,7 +49,17 @@ function App() {
       <br />
       <input type="file" onChange={handleImageUpload} accept="image/*" />
       {uploadedImage && (
-        <ImageClusterIdentification imagePath={uploadedImage} k={k} />
+        <>
+          <ImageClusterIdentification
+            imagePath={uploadedImage}
+            k={k}
+            showComparison={showComparison}
+          />
+          <br />
+          <button onClick={toggleComparison}>
+            {showComparison ? "Hide Original" : "Show Original"}
+          </button>
+        </>
       )}
       <br />
       <br />
