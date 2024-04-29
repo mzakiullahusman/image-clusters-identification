@@ -64,6 +64,20 @@ function App() {
       <br />
       <br />
       <br />
+      <a
+        href="https://github.com/mzakiullahusman/image-clusters-identification"
+        target="_blank"
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+            alt="GitHub"
+            width="30"
+            height="30"
+          />
+          <p>Consider Starring the Repo if You Found It Useful</p>
+        </div>
+      </a>
       <p>Created by: Muhammad Zakiullah Usman</p>
     </div>
   );
